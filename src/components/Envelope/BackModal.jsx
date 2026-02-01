@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 
-export default function BackModal() {
+export default function BackModal({ onYes }) {
   const shape = new THREE.Shape();
 
   // Start somewhere off-center
@@ -48,11 +48,6 @@ export default function BackModal() {
     noRef.current.position.lerp(noTarget, 0.12);
   });
 
-  /* ------------------ YES HANDLER ------------------ */
-  const handleYes = () => {
-    console.log("hello");
-  };
-
   return (
     <group position={[0, 0, 0.05]}>
       {/* Modal background */}
@@ -77,11 +72,18 @@ export default function BackModal() {
         textAlign="center"
         font="/fonts/ComicNeue-Italic.ttf" // optional funny font
       >
-        Will You Be My Valentine?
+        Will You Be My valentine?
       </Text>
 
       {/* YES BUTTON */}
-      <mesh position={[-0.25, -0.25, 0.02]} onClick={handleYes}>
+      <mesh
+        position={[-0.25, -0.25, 0.02]}
+        onClick={(e) => {
+          e.stopPropagation(); // prevent parent canvas click
+          console.log("YES clicked");
+          if (onYes) onYes(); // trigger confetti
+        }}
+      >
         <planeGeometry args={[0.28, 0.14]} />
         <meshBasicMaterial color="#32cd32" />
         <Text fontSize={0.07} color="white" position={[0, 0, 0.01]}>
