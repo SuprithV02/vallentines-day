@@ -1,5 +1,5 @@
 // FrontPostcard.js
-import { Text } from "@react-three/drei";
+import { Text, useTexture } from "@react-three/drei";
 
 export default function FrontPostcard() {
   const WIDTH = 2;
@@ -10,22 +10,23 @@ export default function FrontPostcard() {
   const lineWidth = 0.005; // thinner line
   const lineHeight = HEIGHT * 0.8; // keep equal gap from top & bottom
 
-  const textFont = "/fonts/Love Buble.otf"; // your calligraphy font
+  const textFont = "/fonts/Calligraffitti-Regular.ttf"; // your calligraphy font
 
   // Vertical positions for stacked sentences
   const baseY = HEIGHT / 2 - 0.3; // slightly below HI....KANNA
   const lineSpacing = 0.15;
+
+  const pictureWidth = 0.6;
+  const pictureHeight = HEIGHT * 0.85;
+  const pictureX = 0.55; // right side of parallel lines
+
+  const pictureTexture = useTexture("/imgs/my_pic.jpg");
 
   const sentences = [
     "I Love You For All That You Are",
     "All That You Have Been",
     "And ALL That You Will Be",
   ];
-
-  const getRandomY = () => {
-    // Random Y within the vertical range, leaving a margin at top/bottom
-    return Math.random() * (HEIGHT * 0.7) - HEIGHT * 0.35;
-  };
 
   return (
     <group>
@@ -36,11 +37,11 @@ export default function FrontPostcard() {
       </mesh>
       {/* Double vertical lines at center */}
       <group>
-        <mesh position={[-lineGap / 2, 0, THICKNESS / 2 + 0.001]}>
+        <mesh position={[-lineGap / 2 + 0.21, 0, THICKNESS / 2 + 0.001]}>
           <boxGeometry args={[lineWidth, lineHeight, 0.001]} />
           <meshStandardMaterial color="black" />
         </mesh>
-        <mesh position={[lineGap / 2, 0, THICKNESS / 2 + 0.001]}>
+        <mesh position={[lineGap / 2 + 0.2, 0, THICKNESS / 2 + 0.001]}>
           <boxGeometry args={[lineWidth, lineHeight, 0.001]} />
           <meshStandardMaterial color="black" />
         </mesh>
@@ -48,7 +49,7 @@ export default function FrontPostcard() {
       {/* Top-left greeting */}
       <Text
         position={[-WIDTH / 2 + 0.1, HEIGHT / 2 - 0.1, THICKNESS / 2 + 0.01]}
-        fontSize={0.2}
+        fontSize={0.12}
         color="black"
         anchorX="left"
         anchorY="top"
@@ -63,12 +64,12 @@ export default function FrontPostcard() {
           <group key={index}>
             {/* Sentence text */}
             <Text
-              position={[-WIDTH / 2 + 0.1, yPos, THICKNESS / 2 + 0.01]}
+              position={[-WIDTH / 2, yPos, THICKNESS / 2 + 0.01]}
               fontSize={0.065}
               color="black"
               anchorX="left"
               anchorY="top"
-              font="/fonts/Calligraffitti-Regular.ttf"
+              font="/fonts/PlaywriteINGuides-Regular.ttf"
             >
               {sentence}
             </Text>
@@ -103,6 +104,41 @@ export default function FrontPostcard() {
         rotation={[0, 0, -0.15]} // rotate slightly counter-clockwise
       >
         XOXO
+      </Text>
+      <Text
+        position={[
+          -WIDTH / 2 + 0.6,
+          baseY - sentences.length * lineSpacing - 0.05,
+          THICKNESS / 2 + 0.01,
+        ]} // slightly below last line
+        fontSize={0.08}
+        color="black"
+        anchorX="left"
+        anchorY="top"
+        font="/fonts/Lovely-Pretty.ttf"
+        rotation={[0, 0, -0.15]} // rotate slightly counter-clockwise
+      >
+        XOXO
+      </Text>
+      <mesh position={[pictureX, 0, THICKNESS / 2 + 0.002]}>
+        <planeGeometry args={[pictureWidth, pictureHeight]} />
+        <meshStandardMaterial map={pictureTexture} transparent />
+      </mesh>
+      <Text
+        position={[
+          pictureX - pictureWidth / 2 + 0.05,
+          pictureHeight / 2 - 0.05,
+          THICKNESS / 2 + 0.01,
+        ]}
+        fontSize={0.07}
+        color="#ffffff"
+        anchorX="left"
+        anchorY="top"
+        font="/fonts/Lovely-Pretty.ttf"
+        rotation={[0, 0, -0.1]}
+        material-toneMapped={false}
+      >
+        — Love From Kanna
       </Text>
     </group>
   );
