@@ -10,7 +10,7 @@ export default function FrontPostcard() {
   const lineWidth = 0.005; // thinner line
   const lineHeight = HEIGHT * 0.8; // keep equal gap from top & bottom
 
-  const textFont = "/fonts/Calligraffitti-Regular.ttf"; // your calligraphy font
+  const textFont = "/fonts/Rosehot.ttf"; // your calligraphy font
 
   // Vertical positions for stacked sentences
   const baseY = HEIGHT / 2 - 0.3; // slightly below HI....KANNA
@@ -20,10 +20,14 @@ export default function FrontPostcard() {
   const pictureHeight = HEIGHT * 0.85;
   const pictureX = 0.55; // right side of parallel lines
 
+  const TEXT_LEFT_PADDING = 0.05;
+  const TEXT_RIGHT_PADDING = 0.12;
+  const TEXT_MAX_WIDTH = WIDTH - TEXT_LEFT_PADDING - TEXT_RIGHT_PADDING - 0.3; // leave room for photo
+
   const pictureTexture = useTexture("/imgs/my_pic.jpg");
 
   const sentences = [
-    "I Love You For All That You Are",
+    "Love You For All that You Are",
     "All That You Have Been",
     "And ALL That You Will Be",
   ];
@@ -64,7 +68,12 @@ export default function FrontPostcard() {
           <group key={index}>
             {/* Sentence text */}
             <Text
-              position={[-WIDTH / 2, yPos, THICKNESS / 2 + 0.01]}
+              position={[
+                -WIDTH / 2 + TEXT_LEFT_PADDING,
+                yPos,
+                THICKNESS / 2 + 0.01,
+              ]}
+              maxWidth={TEXT_MAX_WIDTH}
               fontSize={0.065}
               color="black"
               anchorX="left"

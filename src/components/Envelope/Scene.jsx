@@ -3,9 +3,12 @@ import Envelope from "./Envelope";
 import Background from "./Background";
 import { useState } from "react";
 import ConfettiWrapper from "./Confetti";
+import Pigeon from "./Pigeon";
 
 export default function Scene() {
   const [runConfetti, setRunConfetti] = useState(false);
+  const [showPigeon, setShowPigeon] = useState(false);
+
   return (
     <>
       <Canvas
@@ -21,7 +24,13 @@ export default function Scene() {
         <directionalLight position={[7, 3, 10]} intensity={1} /> //directional
         light simulates sunlight coming from a specific direction
         <Background />
-        <Envelope triggerConfetti={() => setRunConfetti(true)} />
+        <Envelope
+          triggerConfetti={() => {
+            setRunConfetti(true);
+            setShowPigeon(true);
+          }}
+        />
+        <Pigeon active={showPigeon} />
       </Canvas>
 
       <ConfettiWrapper
