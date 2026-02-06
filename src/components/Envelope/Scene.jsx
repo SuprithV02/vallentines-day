@@ -23,6 +23,7 @@ export default function Scene() {
         of light to the entire scene
         <directionalLight position={[7, 3, 10]} intensity={1} /> //directional
         light simulates sunlight coming from a specific direction
+        <Pigeon active={showPigeon} />
         <Background />
         <Envelope
           triggerConfetti={() => {
@@ -30,7 +31,6 @@ export default function Scene() {
             setShowPigeon(true);
           }}
         />
-        <Pigeon active={showPigeon} />
       </Canvas>
 
       <ConfettiWrapper

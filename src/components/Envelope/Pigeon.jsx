@@ -10,7 +10,7 @@ export default function Pigeon({ active }) {
   // KEEP THESE VALUES
   const START_X = 5; // inside frustum
   const END_X = -5;
-  const SPEED = 0.015;
+  const SPEED = 0.011;
 
   useFrame(() => {
     if (!active || !ref.current) return;
@@ -87,7 +87,8 @@ export default function Pigeon({ active }) {
         anchorY="middle"
         font="/fonts/ComicNeue-Italic.ttf"
       >
-        HeHe...I Know You Love Meee!!
+        {`HeHe...I Know You Love Meee!!
+Catch Me for a Surprisee...!!`}
       </Text>
     </group>
   );

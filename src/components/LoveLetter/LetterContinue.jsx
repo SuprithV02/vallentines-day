@@ -1,11 +1,9 @@
 import { Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-export default function Letter() {
+export default function LetterContinue() {
   const { viewport } = useThree();
-  const navigate = useNavigate();
 
   const PADDING = 0.6;
   const width = viewport.width - PADDING;
@@ -42,12 +40,16 @@ export default function Letter() {
         anchorY="top"
       >
         {`
-My Dearest Love Deeksha,
 
-"If the World is gonna end tomorrow. it can take me, but not you within me." These are the first words which i used to express my intentions for u and i really bound them with all my heart.
-From the moment fate winded our paths, time itself learned to stand still. Your laughter became my sunrise, your silence my deepest prayer. Across every lifetime, through every storm, I would still find you.
-We have crossed paths for 4 years without any knowledge of each other (i mean i knew u but u didn't) and might be other circumstances where we might have met but i texted and u fell in love. What a conspiracy right??? 
-I never thought that i would find someone like you in this lifetime, and i am so grateful to have you in my life. You are the light that guides me through the darkest of days, and the warmth that fills my heart with joy.
+Dec 2nd...ee dina nan yavathu mariyalla, life alli first time nan prapancha heeg iruthe anodu nodde. Big Bang might have caused million years back, But You are my Big Bang, My Universe, My Everything. Yella nin bandmele 
+yavathu eee tara agilla, dina yeste idruu...ninnadonde yochane, 
+As Raghu dixit says "Prathikshna kandaga ninnanu adeno eno eno aagide pade pade nanna hejje daari tappi ninnane bandu seride. Kanna Kanna maathige Bhaasheyondu etake iddakidda haageye Khushi kanthumbide" (Imagine i am "Thelaadtidini")
+i fell in love....i am in Love and if possible i will fall in Love again and again and again with you in every lifetime.
+
+I LOVE YOU Kannaaa 
+
+Forever Yours,
+— Kanna
         `}
       </Text>
 
@@ -67,14 +69,15 @@ I never thought that i would find someone like you in this lifetime, and i am so
           setHovered(null);
         }}
         onClick={() => {
-          window.location.href = "/";
+          sessionStorage.setItem("canViewLoveLetter", "true");
+          window.location.href = "/loveLetter";
         }}
       >
         ← Back
       </Text>
 
       {/* NEXT BUTTON */}
-      <Text
+      {/* <Text
         position={[width / 2 - SIDE_MARGIN, -height / 2 + BOTTOM_MARGIN, 0.02]}
         fontSize={0.14}
         color={hovered === "next" ? "#6b4e2e" : "#3b2f1c"}
@@ -88,14 +91,12 @@ I never thought that i would find someone like you in this lifetime, and i am so
           document.body.style.cursor = "default";
           setHovered(null);
         }}
-        onPointerDown={(e) => {
-          e.stopPropagation(); // prevent Canvas clicks
-          sessionStorage.setItem("canViewLoveLetter2", "true");
-          navigate("/loveLetter2");
+        onClick={() => {
+          console.log("hello");
         }}
       >
         Next →
-      </Text>
+      </Text> */}
     </group>
   );
 }

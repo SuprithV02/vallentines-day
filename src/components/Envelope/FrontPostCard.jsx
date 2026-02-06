@@ -59,7 +59,7 @@ export default function FrontPostcard() {
         anchorY="top"
         font={textFont}
       >
-        HI....KANNA
+        LOVE CARD
       </Text>
       {/* Sentences with horizontal lines */}
       {sentences.map((sentence, index) => {
@@ -78,7 +78,7 @@ export default function FrontPostcard() {
               color="black"
               anchorX="left"
               anchorY="top"
-              font="/fonts/PlaywriteINGuides-Regular.ttf"
+              font="/fonts/Valentine Rosyalin Italic Demo.ttf"
             >
               {sentence}
             </Text>
